@@ -1,0 +1,33 @@
+# Fly.io app configuration
+# App name must be globally unique — change "eihei4all" to something else if taken
+app = "eihei"
+primary_region = "nrt"   # Tokyo; alternatives: hkg, sin, syd, lax, ord, iad
+
+[build]
+  dockerfile = "Dockerfile.fly"
+
+[env]
+  PORT = "8080"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = "stop"
+  auto_start_machines = true
+  min_machines_running = 0
+
+  [http_service.concurrency]
+    type = "connections"
+    hard_limit = 25
+    soft_limit = 20
+
+# Persistent volume for SQLite database and uploaded files
+# Created automatically on first deploy: fly vol create eihei_data -s 2 -r nrt
+[[mounts]]
+  source = "eihei_data"
+  destination = "/mnt/data"
+
+[[vm]]
+  memory = "256mb"
+  cpu_kind = "shared"
+  cpus = 1
