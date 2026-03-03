@@ -3,7 +3,7 @@
     <!-- Header -->
     <header class="bg-gray-900 border-b border-gray-800 px-6 py-3 flex items-center justify-between shrink-0">
       <div class="flex items-center gap-4">
-        <router-link to="/upload" class="text-gray-400 hover:text-white transition-colors text-sm">← 返回</router-link>
+        <router-link to="/" class="text-gray-400 hover:text-white transition-colors text-sm">← 主页</router-link>
         <h1 class="text-white font-semibold">管理后台</h1>
       </div>
       <span class="text-sm text-gray-400">@{{ auth.user?.username }}</span>

@@ -33,8 +33,9 @@
 
     <!-- ── Hover overlay (controls) ── -->
     <transition name="fade-ui">
-      <div v-if="showUI && images.length > 0" class="ui-layer">
+      <div v-if="showUI" class="ui-layer">
         <div class="controls-panel" @click.stop>
+          <router-link to="/" class="flex items-center gap-1 text-xs text-gray-400 hover:text-white transition-colors mb-2">← 主页</router-link>
 
           <!-- Time presets -->
           <div class="flex flex-wrap gap-1">

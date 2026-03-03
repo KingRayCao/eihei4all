@@ -35,10 +35,11 @@
 
     <!-- ── Hover overlay (controls only) ── -->
     <transition name="fade-ui">
-      <div v-if="showUI && images.length > 0" class="ui-layer">
+      <div v-if="showUI" class="ui-layer">
 
         <!-- Filter panel (top-right) -->
         <div class="filter-panel" @click.stop>
+          <router-link to="/" class="flex items-center gap-1 text-xs text-gray-400 hover:text-white transition-colors mb-2">← 主页</router-link>
           <div class="flex flex-wrap gap-1 justify-end">
             <button
               v-for="p in presets" :key="p.hours"
@@ -71,14 +72,14 @@
         </div>
 
         <!-- Prev arrow -->
-        <button class="nav-btn nav-prev" @click.stop="prev" :disabled="idx === 0">
+        <button v-if="images.length > 0" class="nav-btn nav-prev" @click.stop="prev" :disabled="idx === 0">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="nav-icon">
             <polyline points="15 18 9 12 15 6" />
           </svg>
         </button>
 
         <!-- Next arrow -->
-        <button class="nav-btn nav-next" @click.stop="next" :disabled="idx === images.length - 1">
+        <button v-if="images.length > 0" class="nav-btn nav-next" @click.stop="next" :disabled="idx === images.length - 1">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="nav-icon">
             <polyline points="9 18 15 12 9 6" />
           </svg>

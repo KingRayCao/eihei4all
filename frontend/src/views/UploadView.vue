@@ -59,6 +59,7 @@
       </nav>
       <div class="flex items-center gap-3">
         <span class="text-sm text-gray-400">@{{ auth.user?.username }}</span>
+        <router-link to="/" class="btn-ghost text-sm py-1">主页</router-link>
         <router-link v-if="auth.isAdmin" to="/admin" class="btn-ghost text-sm py-1">管理后台</router-link>
         <button class="btn-ghost text-sm py-1" @click="auth.logout()">退出</button>
       </div>
