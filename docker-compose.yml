@@ -9,6 +9,7 @@ services:
       - SECRET_KEY=REPLACE_WITH_A_RANDOM_SECRET_STRING
       - SUPER_ADMIN_USERNAME=admin
       - SUPER_ADMIN_PASSWORD=REPLACE_WITH_SECURE_PASSWORD
+      - TZ=Asia/Shanghai
 
   frontend:
     build: ./frontend
