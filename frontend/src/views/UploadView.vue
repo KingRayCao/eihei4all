@@ -2,7 +2,7 @@
   <!-- ── Auth gate ── -->
   <div v-if="!auth.isAuthenticated" class="min-h-screen flex items-center justify-center p-4">
     <div class="card w-full max-w-sm p-8">
-      <h1 class="text-2xl font-bold text-center mb-8 text-white">Eihei4All</h1>
+      <h1 class="text-2xl font-bold text-center mb-8 text-white">欸嘿酱魔法工坊</h1>
 
       <!-- Login -->
       <form v-if="authMode === 'login'" @submit.prevent="doLogin" class="space-y-4">
