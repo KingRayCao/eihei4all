@@ -193,6 +193,7 @@
 import { ref, computed, onMounted } from 'vue'
 import { useAuthStore } from '../stores/auth.js'
 import api from '../api/index.js'
+import { hashPassword } from '../api/crypto.js'
 
 const auth = useAuthStore()
 
@@ -230,7 +231,7 @@ async function doChangePwd() {
   if (newPwd.value.length < 6) { pwdError.value = '密码至少6位'; return }
   pwdLoading.value = true
   try {
-    await api.put(`/admin/users/${pwdTarget.value.id}/password`, { password: newPwd.value })
+    await api.put(`/admin/users/${pwdTarget.value.id}/password`, { password: hashPassword(newPwd.value) })
     pwdTarget.value = null
   } catch (e) {
     pwdError.value = e.message

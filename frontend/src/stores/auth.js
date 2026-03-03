@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import api from '../api/index.js'
+import { hashPassword } from '../api/crypto.js'
 
 export const useAuthStore = defineStore('auth', () => {
   const user = ref(JSON.parse(localStorage.getItem('user') || 'null'))
@@ -11,7 +12,7 @@ export const useAuthStore = defineStore('auth', () => {
   const isSuperAdmin = computed(() => !!user.value?.is_super_admin)
 
   async function login(username, password) {
-    const res = await api.post('/auth/login', { username, password })
+    const res = await api.post('/auth/login', { username, password: hashPassword(password) })
     token.value = res.access_token
     user.value = res.user
     localStorage.setItem('token', res.access_token)
@@ -19,7 +20,7 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
   async function register(username, password) {
-    return api.post('/auth/register', { username, password })
+    return api.post('/auth/register', { username, password: hashPassword(password) })
   }
 
   function logout() {

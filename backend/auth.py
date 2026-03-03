@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+import hashlib
 import bcrypt
 from jose import JWTError, jwt
 from fastapi import Depends, HTTPException
@@ -6,6 +7,11 @@ from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from config import SECRET_KEY, ALGORITHM, ACCESS_TOKEN_EXPIRE_DAYS
 
 bearer_scheme = HTTPBearer()
+
+
+def sha256_hex(password: str) -> str:
+    """Mirror of the browser-side hashPassword(): SHA-256 → hex string."""
+    return hashlib.sha256(password.encode()).hexdigest()
 
 
 def hash_password(password: str) -> str:

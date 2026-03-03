@@ -25,7 +25,7 @@ def db():
 
 def init_db():
     # Import here to avoid circular import
-    from auth import hash_password
+    from auth import hash_password, sha256_hex
     from config import SUPER_ADMIN_USERNAME, SUPER_ADMIN_PASSWORD
 
     with db() as conn:
@@ -68,5 +68,5 @@ def init_db():
             conn.execute(
                 """INSERT INTO users (username, password_hash, is_approved, is_admin, is_super_admin)
                    VALUES (?, ?, 1, 1, 1)""",
-                (SUPER_ADMIN_USERNAME, hash_password(SUPER_ADMIN_PASSWORD))
+                (SUPER_ADMIN_USERNAME, hash_password(sha256_hex(SUPER_ADMIN_PASSWORD)))
             )
